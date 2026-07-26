@@ -29,6 +29,13 @@ if (process.env.NODE_ENV !== 'production') {
     logger.error(`❌ Unhandled Rejection Error: ${err.message}`);
   });
 }
-
+// 🌍 Root Welcome Route (Browser ya Vercel par error khatam karne ke liye)
+app.get('/', (req, res) => {
+  res.json({ 
+    status: "success",
+    message: "AI Gateway Backend is running successfully! 🚀",
+    endpoint: "/v1/chat/completions"
+  });
+});
 // ⚡ 3. Vercel Deployment Ke Liye Express App Export (LAZMI)
 export default app;
