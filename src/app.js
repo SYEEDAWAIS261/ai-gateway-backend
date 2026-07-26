@@ -15,7 +15,11 @@ dotenv.config();
 const app = express();
 
 // 1. Core Middlewares
-app.use(cors());
+// 1. Core Middlewares
+app.use(cors({
+  origin: true, // Yeh automatically har frontend domain (chahe Vercel ka live URL ho ya preview URL) ko allow kar dega
+  credentials: true,
+}));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
