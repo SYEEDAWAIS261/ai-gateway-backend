@@ -20,6 +20,7 @@ app.use(cors({
   origin: true, // Yeh automatically har frontend domain (chahe Vercel ka live URL ho ya preview URL) ko allow kar dega
   credentials: true,
 }));
+app.options('*', cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
