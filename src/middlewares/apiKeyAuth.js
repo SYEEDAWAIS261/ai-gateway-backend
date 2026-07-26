@@ -12,6 +12,11 @@ export const validateApiKey = async (req, res, next) => {
   }
 
   try {
+    // ⚡ Vercel/Serverless fix: Ensure Redis client is connected before running commands
+    if (!redisClient.isOpen) {
+      await redisClient.connect();
+    }
+
     // Hash key to lookup in Redis
     const keyHash = crypto.createHash('sha256').update(apiKey).digest('hex');
     const keyData = await redisClient.hGetAll(`key:${keyHash}`);
